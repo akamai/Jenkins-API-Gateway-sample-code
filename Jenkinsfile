@@ -25,7 +25,7 @@ pipeline {
         APIGWEMAIL = "dmcallis@akamai.com"
 
         // Path to python project, if pipeline script are not in PATH
-        PATH = "var/lib/jenkins/Jenkins-API-Gateway-sample-code"
+        APIPATH = "var/lib/jenkins/Jenkins-API-Gateway-sample-code"
     }
     parameters {
         choice(name: 'NETWORK', choices: ['staging', 'production'], description: 'The network to activate the network list.')
@@ -49,7 +49,7 @@ pipeline {
                         selector: [$class: 'SpecificBuildSelector', buildNumber: '${BUILD_NUMBER}']
                 ])
                 withEnv(["PATH+EXTRA=$PROJ"]) {
-                    sh 'python3 $NLPATH/createNewApiVersion.py --name $APIGWNAME --file $APIDEFFILE --version ${VERSION}'
+                    sh 'python3 $APIPATH/createNewApiVersion.py --name $APIGWNAME --file $APIDEFFILE --version ${VERSION}'
                 }
 
                 archiveArtifacts "${env.APIDEFFILE}"
@@ -65,14 +65,14 @@ pipeline {
                         selector: [$class: 'SpecificBuildSelector', buildNumber: '${BUILD_NUMBER}']
                 ])
                 withEnv(["PATH+EXTRA=$PROJ"]) {
-                    sh 'python3 $NLPATH/updateEndpointFromDefinition.py --name $APIGWNAME --file $APIDEFFILE'
+                    sh 'python3 $APIPATH/updateEndpointFromDefinition.py --name $APIGWNAME --file $APIDEFFILE'
                 }
             }
         }
         stage('Activate API Definition'){
             steps {
                 withEnv(["PATH+EXTRA=$PROJ"]) {
-                    sh 'python3 $NLPATH/activateApiVersion.py --name $APIGWNAME --network ${NETWORK} --version ${VERSION} --email $APIGWEMAIL'
+                    sh 'python3 $APIPATH/activateApiVersion.py --name $APIGWNAME --network ${NETWORK} --version ${VERSION} --email $APIGWEMAIL'
                 }
             }
         }
