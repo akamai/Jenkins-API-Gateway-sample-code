@@ -1,6 +1,6 @@
-# API Gateway CI Toolkit
+# Jenkins API Gateway Sample Code
 
-The *API Gateway CI Toolkit* contains a series of sample scripts which can be used to quickly implement an API Governance CI process for the [Akamai API Gateway](https://www.akamai.com/us/en/products/web-performance/api-gateway.jsp). API developers can use the *API Gateway CI Toolkit* to reconcile changes to API specification (using Swagger or RAML) with their Akamai API Gateway definition.
+The *Jenkins API Gateway Sample Code* project contains a series of sample scripts and a Jenkins pipeline definition (Jenkinsfile) which can be used to quickly implement an API Governance CI process for the [Akamai API Gateway](https://www.akamai.com/us/en/products/web-performance/api-gateway.jsp). API developers can use the *API Gateway CI Toolkit* to reconcile changes to API specification (using Swagger or RAML) with their Akamai API Gateway definition.
 Such a CI process eliminates much of the administration overhead associated with the management of your Akamai API Gateway configuration state, allowing developers to focus on core services development.
 
 The scripts contained in this project perform the following functions within a simple CI process:
@@ -13,10 +13,11 @@ The above three steps can be orchestrated by some process workflow framework (Je
 
 ### Prerequisites
 
-The *API Gateway CI Toolkit* requires the following to be in place prior to initial use:
+The *Jenkins API Gateway Sample Code* requires the following to be in place prior to initial use:
 
 1. An Akamai API client with 'API Definition' READ-WRITE authorizations https://developer.akamai.com/api/getting-started.
 2. An existing API Gateway property created, keeping note of the name of the Gateway Instance (found in Luna Control Center, in the API Gateway configuration section).
+3. (Optional) A Jenkins instance (2.x or later) with the Pipeline plugin installed. [Instructions](https://jenkins.io/doc/book/pipeline/getting-started/)
 
 ## Installation
 
@@ -107,3 +108,13 @@ Activates a version of the Akamai API Gateway property version on either PRODUCT
 - '--name': The Gateway property name for the target API Gateway (ex: My API Gateway).
 - '--network': The target network to activate the version of the Akamai API Gateway on (PRODUCTION or STAGING).
 - '--email': A comma-seperated list of e-mails for which activation statuses will be sent.
+
+# Jenkins Pipeline
+
+This project contains a Jenkinsfile containing basic steps to fully orchestrate the process of pulling an existing RAML or Swagger API definition from SCM, and using it to modify an existing Akamai API Gateway definition.
+
+Setup of the pipeline workflow:
+
+1. Create a new SCM project, initializing it with the contents of this project.
+2. Update the variable values declared in the Jenkinsfile (within the environment{} section). These values should be specific to your operating environment (Jenkins path, API Gateway name, SCM path of your API Definition, etc)*[]:
+3. Configure a pipeline from SCM project as depicted in the [Jenkins pipeline documentation](https://jenkins.io/doc/book/pipeline/getting-started/#defining-a-pipeline-in-scm).
