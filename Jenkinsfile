@@ -49,7 +49,7 @@ pipeline {
                         selector: [$class: 'SpecificBuildSelector', buildNumber: '${BUILD_NUMBER}']
                 ])
                 withEnv(["PATH+EXTRA=$PROJ"]) {
-                    sh 'python3 $APIPATH/createNewApiVersion.py --name $APIGWNAME --file $APIDEFFILE --version ${VERSION}'
+                    sh 'python3 $APIPATH/createNewApiVersion.py --name $APIGWNAME --version ${VERSION}'
                 }
 
                 archiveArtifacts "${env.APIDEFFILE}"
