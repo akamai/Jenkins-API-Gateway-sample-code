@@ -25,7 +25,7 @@ pipeline {
         APIGWEMAIL = "dmcallis@akamai.com"
 
         // Path to python project, if pipeline script are not in PATH
-        APIPATH = "var/lib/jenkins/Jenkins-API-Gateway-sample-code"
+        APIPATH = "/var/lib/jenkins/Jenkins-API-Gateway-sample-code"
     }
     parameters {
         choice(name: 'NETWORK', choices: ['staging', 'production'], description: 'The network to activate the network list.')
