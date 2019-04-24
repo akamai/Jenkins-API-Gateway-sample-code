@@ -51,9 +51,10 @@ pipeline {
                 withEnv(["PATH+EXTRA=$PROJ"]) {
                     sh 'python3 $NLPATH/createNewApiVersion.py --name $APIGWNAME --file $APIDEFFILE --version ${VERSION}'
                 }
-            }
 
-            archiveArtifacts "${env.APIDEFFILE}"
+                archiveArtifacts "${env.APIDEFFILE}"
+
+            }
         }
         stage('Update API Definition'){
             steps {
