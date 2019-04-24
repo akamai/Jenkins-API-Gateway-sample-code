@@ -9,7 +9,7 @@ The scripts contained in this project perform the following functions within a s
 2. Update the Akamai API Gateway configuration using either a RAML or Swagger API definition artifact. This step also performs a high level comparison of the exiting API Gateway resource state and the new API definition.
 3. Activate a new Akamai API Gateway configuration on either PRODUCTION or STAGING networks.
 
-The above three steps can be orchestrated by some process workflow framework (Jenkins, Bamboo, Rundeck, etc) and triggered by some external event (such as a VCS event like commit or push) to automate the process of reconciling API definition updates with the Akamai API Gateway configuration state.
+The above three steps can be orchestrated by some process workflow framework (Jenkins, Bamboo, Rundeck, etc) and triggered by some external event (such as a VCS event like commit or push) to automate the process of reconciling API definition updates with the Akamai API Gateway configuration state. A Jenkinsfile has been included with this project, which can be used to quickly orchestrate the above steps using the Jenkins pipeline plugin framework.
 
 ### Prerequisites
 
