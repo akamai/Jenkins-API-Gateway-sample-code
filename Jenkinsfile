@@ -12,17 +12,17 @@ pipeline {
         // Assumes you have defined a Jenkins environment variable 'PATH+EXTRA'
         PROJ = "/bin:/usr/local/bin:/usr/bin"
 
-        // Name of CSV file containing network list
+        // Name of Swagger or RAML definition file
         APIDEFFILE = "api.yaml"
 
-        // Name of network list to update
+        // Name of gateway to update
         APIGWNAME = "API Gateway Demo"
 
-        // Link to VCS project containing network list
-        APISCM = "git@github.com:dmcallis1/rapid-definition.git"
+        // Link to VCS project containing API Definition (Swagger or RAML)
+        APISCM = "git@github.com:example/api-project.git"
 
         // Comma-seperated e-mail list
-        APIGWEMAIL = "dmcallis@akamai.com"
+        APIGWEMAIL = "john.doe@example.com"
 
         // Path to python project, if pipeline script are not in PATH
         APIPATH = "/var/lib/jenkins/Jenkins-API-Gateway-sample-code"
